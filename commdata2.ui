@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Commstat Data Manager</string>
+   <string>Commstat Gesto de Datos</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -42,28 +42,28 @@
     <item row="2" column="2">
      <widget class="QPushButton" name="pushButtonstate">
       <property name="text">
-       <string>Grid Filter</string>
+       <string>Filtrar por Grid</string>
       </property>
      </widget>
     </item>
     <item row="1" column="3">
      <widget class="QLabel" name="labelDateStart">
       <property name="text">
-       <string>Date / Time Start :</string>
+       <string>Fecha / Hora Inicio :</string>
       </property>
      </widget>
     </item>
     <item row="2" column="8">
      <widget class="QPushButton" name="pushButtonEX">
       <property name="text">
-       <string>Export Data</string>
+       <string>Exportar Datos</string>
       </property>
      </widget>
     </item>
     <item row="1" column="1">
      <widget class="QLabel" name="labelName">
       <property name="text">
-       <string>Report Name :</string>
+       <string>Nombre Reporte :</string>
       </property>
      </widget>
     </item>
@@ -79,7 +79,7 @@
        </sizepolicy>
       </property>
       <property name="displayFormat">
-       <string>M/d/yyyy h:mm Z</string>
+       <string>d/M/yyyy h:mm Z</string>
       </property>
       <property name="calendarPopup">
        <bool>true</bool>
@@ -92,14 +92,14 @@
     <item row="2" column="7">
      <widget class="QPushButton" name="pushButtonIM">
       <property name="text">
-       <string>Import Data </string>
+       <string>Importar Datos </string>
       </property>
      </widget>
     </item>
     <item row="2" column="4">
      <widget class="QCheckBox" name="checkBoxgreen">
       <property name="text">
-       <string>Green</string>
+       <string>Verde</string>
       </property>
      </widget>
     </item>
@@ -112,7 +112,7 @@
        </sizepolicy>
       </property>
       <property name="displayFormat">
-       <string>M/d/yyyy h:mm Z</string>
+       <string>d/M/yyyy h:mm Z</string>
       </property>
       <property name="calendarPopup">
        <bool>true</bool>
@@ -125,7 +125,7 @@
     <item row="1" column="8">
      <widget class="QPushButton" name="pushButtonPrint">
       <property name="text">
-       <string>Build Report</string>
+       <string>Crear Reporte</string>
       </property>
      </widget>
     </item>
@@ -135,35 +135,35 @@
     <item row="1" column="7">
      <widget class="QPushButton" name="pushButtonLoad">
       <property name="text">
-       <string>Load Display</string>
+       <string>Cargar Display</string>
       </property>
      </widget>
     </item>
     <item row="2" column="6">
      <widget class="QCheckBox" name="checkBoxred">
       <property name="text">
-       <string>Red</string>
+       <string>Rojo</string>
       </property>
      </widget>
     </item>
     <item row="2" column="5">
      <widget class="QCheckBox" name="checkBoxyellow">
       <property name="text">
-       <string>Yellow</string>
+       <string>Amarillo</string>
       </property>
      </widget>
     </item>
     <item row="2" column="3">
      <widget class="QPushButton" name="pushButtonclosestate">
       <property name="text">
-       <string>Select Grid(s)</string>
+       <string>Seleccionar Grid(s)</string>
       </property>
      </widget>
     </item>
     <item row="1" column="5">
      <widget class="QLabel" name="labelEnd">
       <property name="text">
-       <string>Date / Time End :</string>
+       <string>Fecha / Hora Fin :</string>
       </property>
      </widget>
     </item>
@@ -173,14 +173,14 @@
     <item row="2" column="1">
      <widget class="QPushButton" name="pushButtonclearstate">
       <property name="text">
-       <string>Clear Grid Filter</string>
+       <string>Limpiar Filtro Grid</string>
       </property>
      </widget>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="labelstates">
       <property name="text">
-       <string>Grid Filter</string>
+       <string>Filtro Grid</string>
       </property>
      </widget>
     </item>
