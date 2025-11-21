@@ -44,7 +44,6 @@ class Ui_FormMarquee(object):
         self.label.setFont(font)
         self.label.setObjectName("label")
 
-
         self.lineEdit_3 = QtWidgets.QLineEdit(FormMarquee)
         self.lineEdit_3.setGeometry(QtCore.QRect(171, 126, 60, 22))
         font = QtGui.QFont()
@@ -58,9 +57,6 @@ class Ui_FormMarquee(object):
         font.setPointSize(10)
         self.label_3.setFont(font)
         self.label_3.setObjectName("label3")
-
-
-
 
         self.label_2 = QtWidgets.QLabel(FormMarquee)
         self.label_2.setGeometry(QtCore.QRect(45, 155, 126, 20))
@@ -112,7 +108,6 @@ class Ui_FormMarquee(object):
         self.pushButton.clicked.connect(self.transmit)
         self.pushButton_3.clicked.connect(self.save_only)
 
-
         self.MainWindow.setWindowFlags(
             QtCore.Qt.Window |
             QtCore.Qt.CustomizeWindowHint |
@@ -124,17 +119,16 @@ class Ui_FormMarquee(object):
 
     def retranslateUi(self, FormMarquee):
         _translate = QtCore.QCoreApplication.translate
-        FormMarquee.setWindowTitle(_translate("FormMarquee", "CommStat Marquee"))
-        self.label.setText(_translate("FormMarquee", "Select Marquee Color : "))
-        self.label_2.setText(_translate("FormMarquee", "Marquee Message : "))
-        self.label_3.setText(_translate("FormMarquee", "From Callsign :"))
-        self.pushButton.setText(_translate("FormMarquee", "Transmit"))
-        self.pushButton_2.setText(_translate("FormMarquee", "Cancel"))
-        self.pushButton_3.setText(_translate("FormMarquee", "Save Only"))
-        self.radioButton_Green.setText(_translate("FormMarquee", "Green"))
-        self.radioButton_Yellow.setText(_translate("FormMarquee", "Yellow"))
-        self.radioButton_Red.setText(_translate("FormMarquee", "Red"))
-
+        FormMarquee.setWindowTitle(_translate("FormMarquee", "Anuncio de CommStat"))
+        self.label.setText(_translate("FormMarquee", "Color del Anuncio : "))
+        self.label_2.setText(_translate("FormMarquee", "Mensaje : "))
+        self.label_3.setText(_translate("FormMarquee", "Del Indicativo :"))
+        self.pushButton.setText(_translate("FormMarquee", "Transmitir"))
+        self.pushButton_2.setText(_translate("FormMarquee", "Cancelar"))
+        self.pushButton_3.setText(_translate("FormMarquee", "Guardar"))
+        self.radioButton_Green.setText(_translate("FormMarquee", "Verde"))
+        self.radioButton_Yellow.setText(_translate("FormMarquee", "Amarillo"))
+        self.radioButton_Red.setText(_translate("FormMarquee", "Rojo"))
 
     def getConfig(self):
         global serverip
@@ -158,7 +152,6 @@ class Ui_FormMarquee(object):
             selectedgroup = format(userinfo["selectedgroup"])
             self.lineEdit_3.setText(callsign)
 
-
             randnum = random.randint(100, 999)
 
     def save_only(self):
@@ -167,32 +160,32 @@ class Ui_FormMarquee(object):
 
         comments1 = format(self.lineEdit_2.text())
         comments1 = comments1.upper()
-        comments = re.sub("[^A-Za-z0-9*\-\s]+", " ", comments1)
+        comments = re.sub(r"[^A-Za-z0-9*\-\s]+", " ", comments1)
         call = format(self.lineEdit_3.text())
         call = call.upper()
 
         if len(call) < 4 :
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText("Callsign too short")
+            msg.setWindowTitle("CommStatQXT error")
+            msg.setText("Indicativo demasiado corto")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
             return
         if len(call) > 8 :
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText("Callsign too long")
+            msg.setWindowTitle("CommStatQXT error")
+            msg.setText("Indicativo demasiado largo")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
             return
 
 
-        if not re.match('[AKNW][A-Z]{0,2}[0-9][A-Z]{1,3}', call):
+        if not re.match('[ACEKNW][A-Z]{0,2}[0-9][A-Z]{1,3}', call):
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText("Callsign entered does not meet callsign structure requirements!")
+            msg.setWindowTitle("CommStatQXT error")
+            msg.setText("El indicativo puesto no coincide con una sintaxis correcta!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -201,8 +194,8 @@ class Ui_FormMarquee(object):
 
         if len(comments) < 12 :
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText("Marquee text too short")
+            msg.setWindowTitle("CommStatQXT error")
+            msg.setText("Texto del Anuncio demasiado corto")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -216,13 +209,12 @@ class Ui_FormMarquee(object):
             color = "2"
         else:
                 msg = QMessageBox()
-                msg.setWindowTitle("CommStatX error")
-                msg.setText(" Color selection is required!")
+                msg.setWindowTitle("CommStatQXT error")
+                msg.setText("Es necesario elegir un color para el Anuncio!")
                 msg.setIcon(QMessageBox.Critical)
                 msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
                 x = msg.exec_()  # this will show our messagebox
                 return
-
 
         group = "@"+selectedgroup
         randnum = random.randint(100, 999)
@@ -241,13 +233,12 @@ class Ui_FormMarquee(object):
         #x = msg.exec_()
 
         now = QDateTime.currentDateTime()
-        date = (now.toUTC().toString("yyyy-MM-dd HH:mm:ss"))
+        date = (now.toUTC().toString("dd-MM-yyyy HH:mm:ss"))
         conn = sqlite3.connect("traffic.db3")
         cur = conn.cursor()
         conn.set_trace_callback(print)
         cur.execute("INSERT OR REPLACE INTO marquees_Data (idnum,callsign,groupname,date,color, message) VALUES(?,?,?,?,?,?)",(idrand,call, selectedgroup,date,color,comments))
         conn.commit()
-
 
         print(date,selectedgroup,idrand,call,comments)
         cur.close()
@@ -256,23 +247,19 @@ class Ui_FormMarquee(object):
         #datafile.write("blank line \n" )
         #datafile.close()
 
-
-
         self.closeapp()
-
-
 
     def transmit(self):
         global selectedgroup
         global callsign
 
         comments1 = format(self.lineEdit_2.text())
-        comments = re.sub("[^A-Za-z0-9*\-\s]+", " ", comments1)
+        comments = re.sub(r"[^A-Za-z0-9*\-\s]+", " ", comments1)
 
         if len(comments) < 12 :
             msg = QMessageBox()
             msg.setWindowTitle("CommStatX error")
-            msg.setText("Marquee text too short")
+            msg.setText("Texto del Anuncio demasiado corto")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -287,12 +274,11 @@ class Ui_FormMarquee(object):
         else:
                 msg = QMessageBox()
                 msg.setWindowTitle("CommStatX error")
-                msg.setText(" Color selection is required!")
+                msg.setText("Es necesario elegir un color!")
                 msg.setIcon(QMessageBox.Critical)
                 msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
                 x = msg.exec_()  # this will show our messagebox
                 return
-
 
         group = "@"+selectedgroup
         randnum = random.randint(100, 999)
@@ -305,19 +291,18 @@ class Ui_FormMarquee(object):
         self.sendMessage(messageType, messageString)
         msg = QMessageBox()
         msg.setWindowTitle("CommStatX TX")
-        msg.setText("CommStatX will transmit : " + message)
+        msg.setText("CommStatX transmitira : " + message)
         msg.setIcon(QMessageBox.Information)
         msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
         x = msg.exec_()
 
         now = QDateTime.currentDateTime()
-        date = (now.toUTC().toString("yyyy-MM-dd HH:mm:ss"))
+        date = (now.toUTC().toString("dd-MM-yyyy HH:mm:ss"))
         conn = sqlite3.connect("traffic.db3")
         cur = conn.cursor()
         conn.set_trace_callback(print)
         cur.execute("INSERT OR REPLACE INTO marquees_Data (idnum,callsign,groupname,date,color, message) VALUES(?,?,?,?,?,?)",(idrand,callsign, selectedgroup,date,color,comments))
         conn.commit()
-
 
         print(date,selectedgroup,idrand,callsign,comments)
         cur.close()
@@ -325,8 +310,6 @@ class Ui_FormMarquee(object):
         datafile = open("copyDIRECTED.TXT", "w")
         datafile.write("blank line \n" )
         datafile.close()
-
-
 
         self.closeapp()
         
@@ -351,9 +334,6 @@ class Ui_FormMarquee(object):
                     print("Bulletin random number failed, recycling and trying again")
                     cursor.close()
                     self.find_marq_id()
-
-
-
             cursor.close()
 
         except sqlite3.Error as error:
@@ -368,12 +348,6 @@ class Ui_FormMarquee(object):
 
     def sendMessage(self, messageType, messageText):
         self.api.sendMessage(messageType, messageText)
-
-
-
-
-
-
 
 
 
