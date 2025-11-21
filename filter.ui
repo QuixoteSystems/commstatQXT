@@ -19,7 +19,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Commstat Filters</string>
+   <string>Filtros Commstat</string>
   </property>
   <widget class="QDateTimeEdit" name="StartDateTimeEdit">
    <property name="geometry">
@@ -31,7 +31,7 @@
     </rect>
    </property>
    <property name="displayFormat">
-    <string>M/d/yyyy h:mm Z</string>
+    <string>d/M/yyyy h:mm Z</string>
    </property>
    <property name="calendarPopup">
     <bool>true</bool>
@@ -50,7 +50,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Starting Date / Time : </string>
+    <string>Fecha Inicio / Hora : </string>
    </property>
   </widget>
   <widget class="QLabel" name="EndTimeLabel">
@@ -63,7 +63,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Ending Date / Time : </string>
+    <string>Fecha Fin / Hora : </string>
    </property>
   </widget>
   <widget class="QDateTimeEdit" name="EndDateTimeEdit">
@@ -76,7 +76,7 @@
     </rect>
    </property>
    <property name="displayFormat">
-    <string>M/d/yyyy h:mm Z</string>
+    <string>d/M/yyyy h:mm Z</string>
    </property>
    <property name="calendarPopup">
     <bool>true</bool>
@@ -108,7 +108,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Yellow</string>
+    <string>Amarillo</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="RedCheckBox">
@@ -121,7 +121,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Red</string>
+    <string>Rojo</string>
    </property>
   </widget>
   <widget class="QLabel" name="StatusLabel">
@@ -134,7 +134,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Status Filter : </string>
+    <string>Estado Filtro : </string>
    </property>
   </widget>
   <widget class="QPushButton" name="GridSelectpushButton">
@@ -147,7 +147,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Grid Filter</string>
+    <string>Filtrar por Grid</string>
    </property>
   </widget>
   <widget class="QPushButton" name="ClearGridspushButton">
@@ -160,7 +160,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Clear</string>
+    <string>Limpiar</string>
    </property>
   </widget>
   <widget class="QLabel" name="GridsLabel">
@@ -173,7 +173,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Grids Selected : </string>
+    <string>Grids Seleccionadas : </string>
    </property>
   </widget>
   <widget class="QLabel" name="gridsSelectedlabel">
@@ -199,7 +199,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Select Grids</string>
+    <string>Selecciona Grids</string>
    </property>
   </widget>
   <widget class="QWidget" name="gridLayoutWidget">
@@ -243,7 +243,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Save Filter</string>
+    <string>Guardar Filtro</string>
    </property>
   </widget>
   <widget class="QPushButton" name="CancelpushButton">
@@ -256,7 +256,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Cancel</string>
+    <string>Cancelar</string>
    </property>
   </widget>
  </widget>
