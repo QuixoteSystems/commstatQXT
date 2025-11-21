@@ -1,5 +1,5 @@
-# commstatone
- # CommStatOne Ver 1.0.5 Released 10/15/23
+# CommStatQXT
+## CommStatQXT is still in under development
 <h3 style="color: #4485b8;">CommStat One Ver 1.0.5 add on software for JS8Call groups&nbsp;&nbsp;<img src="https://github.com/W5DMH/CommStatX/blob/main/CommStatXBeta.png?raw=true" alt="CommStat One Ver 1.0.5" width="300" height="170" /></h3>
 
 Commstat One is a Python version of the CommStat software <b>designed to run on on Win10 AND Linux</b><br>
