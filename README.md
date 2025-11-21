@@ -1,6 +1,6 @@
-# CommStatQXT
-## CommStatQXT is still in under development
-<h3 style="color: #4485b8;">CommStat One Ver 1.0.5 add on software for JS8Call groups&nbsp;&nbsp;<img src="https://github.com/W5DMH/CommStatX/blob/main/CommStatXBeta.png?raw=true" alt="CommStat One Ver 1.0.5" width="300" height="170" /></h3>
+# CommStat QXT
+## CommStat QXT is still in under development
+CommStat QXT is a modified and tranlated version of the original CommStat One Ver 1.0.5 and CommStat v2[https://gitlab.com/amrron/commstat-v2]
 
 Commstat One is a Python version of the CommStat software <b>designed to run on on Win10 AND Linux</b><br>
 <br><br>
