@@ -32,7 +32,6 @@ class Ui_FormSettings(object):
         self.lineEdit.setFont(font)
         self.lineEdit.setObjectName("lineEdit")
 
-
         self.label = QtWidgets.QLabel(FormSettings)
         self.label.setGeometry(QtCore.QRect(30, 20, 131, 21))
         font = QtGui.QFont()
@@ -57,7 +56,6 @@ class Ui_FormSettings(object):
         self.lineEdit_2.setFont(font)
         self.lineEdit_2.setObjectName("lineEdit_2")
 
-
         self.label_5 = QtWidgets.QLabel(FormSettings)
         self.label_5.setGeometry(QtCore.QRect(30, 80, 131, 21))
         font = QtGui.QFont()
@@ -75,9 +73,6 @@ class Ui_FormSettings(object):
         self.lineEdit_5.setFont(font)
         self.lineEdit_5.setObjectName("lineEdit_5")
 
-
-
-
         self.label_11 = QtWidgets.QLabel(FormSettings)
         self.label_11.setGeometry(QtCore.QRect(30, 110, 131, 21))
         font = QtGui.QFont()
@@ -94,61 +89,18 @@ class Ui_FormSettings(object):
         font.setPointSize(10)
         self.comboBoxState.setFont(font)
         self.comboBoxState.setObjectName("comboBoxState")
-        self.comboBoxState.addItem('AL')
-        self.comboBoxState.addItem('AK')
-        self.comboBoxState.addItem('AZ')
-        self.comboBoxState.addItem('AR')
-        self.comboBoxState.addItem('CA')
-        self.comboBoxState.addItem('CO')
-        self.comboBoxState.addItem('CT')
-        self.comboBoxState.addItem('DE')
-        self.comboBoxState.addItem('FL')
-        self.comboBoxState.addItem('GA')
-        self.comboBoxState.addItem('HI')
-        self.comboBoxState.addItem('ID')
-        self.comboBoxState.addItem('IL')
-        self.comboBoxState.addItem('IN')
-        self.comboBoxState.addItem('IA')
-        self.comboBoxState.addItem('KS')
-        self.comboBoxState.addItem('KY')
-        self.comboBoxState.addItem('LA')
-        self.comboBoxState.addItem('ME')
-        self.comboBoxState.addItem('MD')
-        self.comboBoxState.addItem('MA')
-        self.comboBoxState.addItem('MI')
-        self.comboBoxState.addItem('MN')
-        self.comboBoxState.addItem('MS')
-        self.comboBoxState.addItem('MO')
-        self.comboBoxState.addItem('MT')
-        self.comboBoxState.addItem('NE')
-        self.comboBoxState.addItem('NV')
-        self.comboBoxState.addItem('NH')
-        self.comboBoxState.addItem('NJ')
-        self.comboBoxState.addItem('NM')
-        self.comboBoxState.addItem('NY')
-        self.comboBoxState.addItem('NC')
-        self.comboBoxState.addItem('ND')
-        self.comboBoxState.addItem('OH')
-        self.comboBoxState.addItem('OK')
-        self.comboBoxState.addItem('OR')
-        self.comboBoxState.addItem('PA')
-        self.comboBoxState.addItem('RI')
-        self.comboBoxState.addItem('SC')
-        self.comboBoxState.addItem('SD')
-        self.comboBoxState.addItem('TN')
-        self.comboBoxState.addItem('TX')
-        self.comboBoxState.addItem('UT')
-        self.comboBoxState.addItem('VT')
-        self.comboBoxState.addItem('VA')
-        self.comboBoxState.addItem('WA')
-        self.comboBoxState.addItem('WV')
-        self.comboBoxState.addItem('WI')
-        self.comboBoxState.addItem('WY')
-
-
-
-
-
+        self.comboBoxState.addItem('EA1')
+        self.comboBoxState.addItem('EA2')
+        self.comboBoxState.addItem('EA3')
+        self.comboBoxState.addItem('EA4')
+        self.comboBoxState.addItem('EA5')
+        self.comboBoxState.addItem('EA6')
+        self.comboBoxState.addItem('EA7')
+        self.comboBoxState.addItem('EA8')
+        self.comboBoxState.addItem('EA9')
+        self.comboBoxState.addItem('CT1')
+        self.comboBoxState.addItem('CT3')
+        self.comboBoxState.addItem('CT8')
 
         self.label_3 = QtWidgets.QLabel(FormSettings)
         self.label_3.setGeometry(QtCore.QRect(30, 170, 131, 21))
@@ -174,8 +126,6 @@ class Ui_FormSettings(object):
         self.lineEdit_3.setFont(font)
         self.lineEdit_3.setObjectName("lineEdit_3")
 
-
-
         self.lineEdit_4 = QtWidgets.QLineEdit(FormSettings)
         self.lineEdit_4.setGeometry(QtCore.QRect(170, 170, 113, 20))
         font = QtGui.QFont()
@@ -183,11 +133,6 @@ class Ui_FormSettings(object):
         font.setPointSize(10)
         self.lineEdit_4.setFont(font)
         self.lineEdit_4.setObjectName("lineEdit_4")
-
-
-
-
-
 
         self.label_6 = QtWidgets.QLabel(FormSettings)
         self.label_6.setGeometry(QtCore.QRect(10, 270, 241, 21))
@@ -289,68 +234,18 @@ class Ui_FormSettings(object):
         font.setPointSize(10)
         self.comboBoxState.setFont(font)
         self.comboBoxState.setObjectName("comboBoxState")
-        self.comboBoxState.addItem('AL')
-        self.comboBoxState.addItem('AK')
-        self.comboBoxState.addItem('AZ')
-        self.comboBoxState.addItem('AR')
-        self.comboBoxState.addItem('CA')
-        self.comboBoxState.addItem('CO')
-        self.comboBoxState.addItem('CT')
-        self.comboBoxState.addItem('DE')
-        self.comboBoxState.addItem('FL')
-        self.comboBoxState.addItem('GA')
-        self.comboBoxState.addItem('HI')
-        self.comboBoxState.addItem('ID')
-        self.comboBoxState.addItem('IL')
-        self.comboBoxState.addItem('IN')
-        self.comboBoxState.addItem('IA')
-        self.comboBoxState.addItem('KS')
-        self.comboBoxState.addItem('KY')
-        self.comboBoxState.addItem('LA')
-        self.comboBoxState.addItem('ME')
-        self.comboBoxState.addItem('MD')
-        self.comboBoxState.addItem('MA')
-        self.comboBoxState.addItem('MI')
-        self.comboBoxState.addItem('MN')
-        self.comboBoxState.addItem('MS')
-        self.comboBoxState.addItem('MO')
-        self.comboBoxState.addItem('MT')
-        self.comboBoxState.addItem('NE')
-        self.comboBoxState.addItem('NV')
-        self.comboBoxState.addItem('NH')
-        self.comboBoxState.addItem('NJ')
-        self.comboBoxState.addItem('NM')
-        self.comboBoxState.addItem('NY')
-        self.comboBoxState.addItem('NC')
-        self.comboBoxState.addItem('ND')
-        self.comboBoxState.addItem('OH')
-        self.comboBoxState.addItem('OK')
-        self.comboBoxState.addItem('OR')
-        self.comboBoxState.addItem('PA')
-        self.comboBoxState.addItem('RI')
-        self.comboBoxState.addItem('SC')
-        self.comboBoxState.addItem('SD')
-        self.comboBoxState.addItem('TN')
-        self.comboBoxState.addItem('TX')
-        self.comboBoxState.addItem('UT')
-        self.comboBoxState.addItem('VT')
-        self.comboBoxState.addItem('VA')
-        self.comboBoxState.addItem('WA')
-        self.comboBoxState.addItem('WV')
-        self.comboBoxState.addItem('WI')
-        self.comboBoxState.addItem('WY')
-        self.comboBoxState.addItem('ON')
-        self.comboBoxState.addItem('PE')
-        self.comboBoxState.addItem('NS')
-        self.comboBoxState.addItem('NB')
-        self.comboBoxState.addItem('QC')
-        self.comboBoxState.addItem('MB')
-        self.comboBoxState.addItem('SK')
-        self.comboBoxState.addItem('AB')
-        self.comboBoxState.addItem('BC')
-        self.comboBoxState.addItem('YT')
-        self.comboBoxState.addItem('NT')
-        self.comboBoxState.addItem('NU')
+        self.comboBoxState.addItem('EA1')
+        self.comboBoxState.addItem('EA2')
+        self.comboBoxState.addItem('EA3')
+        self.comboBoxState.addItem('EA4')
+        self.comboBoxState.addItem('EA5')
+        self.comboBoxState.addItem('EA6')
+        self.comboBoxState.addItem('EA7')
+        self.comboBoxState.addItem('EA8')
+        self.comboBoxState.addItem('EA9')
+        self.comboBoxState.addItem('CT1')
+        self.comboBoxState.addItem('CT3')
+        self.comboBoxState.addItem('CT8')
 
         self.retranslateUi(FormSettings)
         QtCore.QMetaObject.connectSlotsByName(FormSettings)
@@ -366,24 +261,24 @@ class Ui_FormSettings(object):
 
     def retranslateUi(self, FormSettings):
         _translate = QtCore.QCoreApplication.translate
-        FormSettings.setWindowTitle(_translate("FormSettings", "Commstat Settings"))
-        self.label.setText(_translate("FormSettings", "Enter Legal Callsign :"))
-        self.label_2.setText(_translate("FormSettings", "Enter Callsign Suffix :"))
-        self.label_5.setText(_translate("FormSettings", "Enter 4 or 6 digit Grid :"))
-        self.label_3.setText(_translate("FormSettings", "Enter Group 2 :"))
-        self.label_4.setText(_translate("FormSettings", "Enter Group 1 :"))
+        FormSettings.setWindowTitle(_translate("FormSettings", "Ajustes de Commstat"))
+        self.label.setText(_translate("FormSettings", "Indicativo :"))
+        self.label_2.setText(_translate("FormSettings", "Sujijo :"))
+        self.label_5.setText(_translate("FormSettings", "4 o 6 caracter GRID :"))
+        self.label_3.setText(_translate("FormSettings", "Nombre Grupo 2 :"))
+        self.label_4.setText(_translate("FormSettings", "Nombre Grupo 1 :"))
 
-        self.label_6.setText(_translate("FormSettings", "Enter Path to JS8Call Directed.TXT"))
-        self.pushButton.setText(_translate("FormSettings", "Save Settings"))
-        self.pushButton_2.setText(_translate("FormSettings", "Cancel"))
-        self.radioButton.setText(_translate("FormSettings", "Group1"))
-        self.radioButton_2.setText(_translate("FormSettings", "Group2"))
-        self.label_7.setText(_translate("FormSettings", "Active Group"))
+        self.label_6.setText(_translate("FormSettings", "Ruta archivo JS8Call: Directed.TXT"))
+        self.pushButton.setText(_translate("FormSettings", "Guardar"))
+        self.pushButton_2.setText(_translate("FormSettings", "Cancelar"))
+        self.radioButton.setText(_translate("FormSettings", "Grupo 1"))
+        self.radioButton_2.setText(_translate("FormSettings", "Grupo 2"))
+        self.label_7.setText(_translate("FormSettings", "Grupo Activo"))
         self.lineEdit_7.setText(_translate("FormSettings", "127.0.0.1"))
         self.label_8.setText(_translate("FormSettings", "Server :"))
         self.label_9.setText(_translate("FormSettings", "UDP Port :"))
         self.lineEdit_8.setText(_translate("FormSettings", "2242"))
-        self.label_11.setText(_translate("FormSettings", "Enter State or Prov :"))
+        self.label_11.setText(_translate("FormSettings", "Region Radio :"))
 
 
         self.lineEdit.textChanged.connect(self.callval)
@@ -479,19 +374,15 @@ class Ui_FormSettings(object):
             print("Python version is :" + platform.python_version())
 
 
-
-
-
-
     def setInfo(self):
         # printing the form information
-        print("legal Callsign : {0}".format(self.lineEdit.text()))
-        print("Callsign Suffix : {0}".format(self.lineEdit_2.text()))
-        print("Group 1 : {0} ".format(self.lineEdit_3.text()))
-        print("Group 2 : {0}".format(self.lineEdit_4.text()))
+        print("Indicativo : {0}".format(self.lineEdit.text()))
+        print("Sufijo Indicativo : {0}".format(self.lineEdit_2.text()))
+        print("Grupo 1 : {0} ".format(self.lineEdit_3.text()))
+        print("Grupo 2 : {0}".format(self.lineEdit_4.text()))
         print("GRID: {0}".format(self.lineEdit_5.text()))
-        print("State: {0}".format(self.comboBoxState.currentText()))
-        print("PATH : {0} ".format(self.lineEdit_6.text()))
+        print("Region: {0}".format(self.comboBoxState.currentText()))
+        print("Path : {0} ".format(self.lineEdit_6.text()))
         #print("Path will print incorrectly at install")
         callsign = self.lineEdit.text()
         callsign = callsign.upper()
@@ -514,7 +405,7 @@ class Ui_FormSettings(object):
             idrand = str(randnum)
             selgrp = group1
             now = QDateTime.currentDateTime()
-            date = (now.toUTC().toString("yyyy-MM-dd HH:mm:ss"))
+            date = (now.toUTC().toString("dd-MM-yyyy HH:mm:ss"))
             conn = sqlite3.connect("traffic.db3")
             cur = conn.cursor()
             #conn.set_trace_callback(print)
@@ -534,14 +425,14 @@ class Ui_FormSettings(object):
             if len(group2) < 4:
                 msg = QMessageBox()
                 msg.setWindowTitle("CommStatX error")
-                msg.setText(" Group 2 Minimum 4 characters required!")
+                msg.setText("Grupo 2: Minimo 4 caracteres requeridos!")
                 msg.setIcon(QMessageBox.Critical)
                 x = msg.exec_()  # this will show our messagebox
                 selgrp = group1
                 return
             selgrp = group2
             now = QDateTime.currentDateTime()
-            date = (now.toUTC().toString("yyyy-MM-dd HH:mm:ss"))
+            date = (now.toUTC().toString("dd-MM-yyyy HH:mm:ss"))
             conn = sqlite3.connect("traffic.db3")
             cur = conn.cursor()
             conn.set_trace_callback(print)
@@ -556,7 +447,7 @@ class Ui_FormSettings(object):
         if len(callsign) < 4:
             msg = QMessageBox()
             msg.setWindowTitle("CommStatX error")
-            msg.setText("Minimum 4 characters required!")
+            msg.setText("Minimo 4 caracteres requeridos!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -564,7 +455,7 @@ class Ui_FormSettings(object):
         if len(group1) < 4:
             msg = QMessageBox()
             msg.setWindowTitle("CommStatX error")
-            msg.setText("Minimum 4 characters required for Group 1!")
+            msg.setText("Grupo 1: Minimo 4 caracteres requeridos!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -573,7 +464,7 @@ class Ui_FormSettings(object):
         if len(group2) > 0 and len(group2) < 4:
             msg = QMessageBox()
             msg.setWindowTitle("CommStatX error")
-            msg.setText("Minimum 4 characters required for Group 2!")
+            msg.setText("Grupo 2: Minimo 4 caracteres requeridos!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -590,7 +481,7 @@ class Ui_FormSettings(object):
         if len(grid) < 4:
             msg = QMessageBox()
             msg.setWindowTitle("CommStatX error")
-            msg.setText("4 characters required for Grid!")
+            msg.setText("Minimo 4 caracteres para el Grid!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -599,7 +490,7 @@ class Ui_FormSettings(object):
         if len(path) < 8:
             msg = QMessageBox()
             msg.setWindowTitle("CommStatX error")
-            msg.setText("Path must be populated with JS8Call DIRECTED.TXT Path!")
+            msg.setText("Ruta del archivo de JS8Call: DIRECTED.TXT !")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -607,7 +498,7 @@ class Ui_FormSettings(object):
         if len(state) < 2:
             msg = QMessageBox()
             msg.setWindowTitle("CommStatX error")
-            msg.setText("You must select a State!")
+            msg.setText("Debes seleccionar una Region de Radio!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -618,7 +509,7 @@ class Ui_FormSettings(object):
         if not os.path.exists(path_to_file):
             msg = QMessageBox()
             msg.setWindowTitle("CommStatX error")
-            msg.setText("JS8Call DIRECTED.TXT not found!")
+            msg.setText("Archivo de JS8Call DIRECTED.TXT no encontrado!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -631,7 +522,7 @@ class Ui_FormSettings(object):
         green = "1"
         yellow = "2"
         red = "3"
-        grids = ['AP', 'AO', 'BO', 'CN', 'CM', 'CO', 'DN', 'DM', 'DL', 'DO', 'EN', 'EM','EL','EO','FN','FM','FO''AP', 'AO', 'AO', 'BO', 'CN', 'CM', 'DN', 'DM', 'DL', 'EN', 'EM', 'EL', 'FN', 'FM']
+        grids = ['AP', 'AO', 'BO', 'CN', 'CM', 'CO', 'DN', 'DM', 'DL', 'DO', 'EN', 'EM','EL','EO','FN','FM','FO','IL' 'IM', 'IN', 'JM', 'JN']
 
 
         # Assume we need 2 sections in the config file, let's call them USERINFO and SERVERCONFIG
