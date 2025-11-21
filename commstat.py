@@ -388,7 +388,7 @@ class Ui_MainWindow(QWidget):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "CommStat V 2.3.3 - Mapas Offline - Modificado por Quixote"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "CommStatQXT v2.3.3 - Mapas Offline - Modificado por Quixote"))
         self.actionFilter.setText(_translate("MainWindow", "Filtro de Pantalla"))
         self.actionData.setText(_translate("MainWindow", "Gestor de Datos"))
         self.label.setText(_translate("MainWindow", "TextLabel Anuncio"))
@@ -910,3 +910,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
