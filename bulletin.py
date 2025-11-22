@@ -51,7 +51,6 @@ class Ui_FormBull(object):
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
 
-
         self.lineEdit_3 = QtWidgets.QLineEdit(FormBull)
         self.lineEdit_3.setGeometry(QtCore.QRect(160, 65, 81, 22))
         font = QtGui.QFont()
@@ -66,15 +65,12 @@ class Ui_FormBull(object):
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
 
-
-
         self.pushButton = QtWidgets.QPushButton(FormBull)
         self.pushButton.setGeometry(QtCore.QRect(530, 150, 75, 24))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
-
 
         self.pushButton_2 = QtWidgets.QPushButton(FormBull)
         self.pushButton_2.setGeometry(QtCore.QRect(630, 150, 75, 24))
@@ -90,13 +86,11 @@ class Ui_FormBull(object):
         self.pushButton_3.setFont(font)
         self.pushButton_3.setObjectName("pushButton_3")
 
-
         self.label = QtWidgets.QLabel(FormBull)
         self.label.setGeometry(QtCore.QRect(162, 20, 523, 16))
         self.label.setObjectName("label")
         
         self.find_bull_id()
-
 
         self.retranslateUi(FormBull)
         QtCore.QMetaObject.connectSlotsByName(FormBull)
@@ -122,13 +116,13 @@ class Ui_FormBull(object):
 
     def retranslateUi(self, FormBull):
         _translate = QtCore.QCoreApplication.translate
-        FormBull.setWindowTitle(_translate("FormBull", "CommStat Bulletin"))
-        self.label_2.setText(_translate("FormBull", "Bulletin to transmit : "))
-        self.label_3.setText(_translate("FormBull", "From Callsign : "))
-        self.pushButton.setText(_translate("FormBull", "Transmit"))
-        self.pushButton_2.setText(_translate("FormBull", "Cancel"))
-        self.pushButton_3.setText(_translate("FormBull", "Save Only"))
-        self.label.setText(_translate("FormBull", "This will transmit a message to all stations that will pop up for immediate action"))
+        FormBull.setWindowTitle(_translate("FormBull", "Boletín de CommStat QXT"))
+        self.label_2.setText(_translate("FormBull", "Boletín a Transmitir : "))
+        self.label_3.setText(_translate("FormBull", "Del Indicativo : "))
+        self.pushButton.setText(_translate("FormBull", "Transmitir"))
+        self.pushButton_2.setText(_translate("FormBull", "Cancelar"))
+        self.pushButton_3.setText(_translate("FormBull", "Guardar"))
+        self.label.setText(_translate("FormBull", "Se transmitirá un mensaje a todas las estaciones con una ventana emergente para tomar medidas inmediatas"))
 
 
     def getConfig(self):
@@ -166,12 +160,12 @@ class Ui_FormBull(object):
         call = format(self.lineEdit_3.text())
         call = call.upper()
         comments1 = format(self.lineEdit_2.text())
-        comments = re.sub("[^A-Za-z0-9*\-\s]+", " ", comments1)
+        comments = re.sub(r"[^A-Za-z0-9*\-\s]+", " ", comments1)
 
         if len(comments) < 4 :
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText("Bulletin too short")
+            msg.setWindowTitle("CommStat QXT error")
+            msg.setText("Boletin demsiado corto")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             msg.raise_()
@@ -179,25 +173,25 @@ class Ui_FormBull(object):
             return
         if len(call) < 4:
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText("Minimum 4 characters required!")
+            msg.setWindowTitle("CommStat QXT error")
+            msg.setText("Se requieren 4 caracteres como minimo!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
             return
         if len(call) > 8:
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText("Minimum 4 characters required!")
+            msg.setWindowTitle("CommStat QXT error")
+            msg.setText("Se requieren 4 caracteres como minimo!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
             return
 
-        if not re.match('[AKNW][A-Z]{0,2}[0-9][A-Z]{1,3}', call):
+        if not re.match('[ACEKNW][A-Z]{0,2}[0-9][A-Z]{1,3}', call):
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText("Does not meet callsign structure!")
+            msg.setWindowTitle("CommStat QXT error")
+            msg.setText("Indicativo con sintaxis incorrecta!")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -217,8 +211,8 @@ class Ui_FormBull(object):
         print("made it this far 2 ")
 
         msg = QMessageBox()
-        msg.setWindowTitle("CommStatX Save Bulletin")
-        msg.setText("CommStatX has saved : " + message)
+        msg.setWindowTitle("CommStat QXT Guardar Boletin")
+        msg.setText("CommStat QXT ha guardado : " + message)
         msg.setIcon(QMessageBox.Information)
         msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
         x = msg.exec_()
@@ -229,7 +223,7 @@ class Ui_FormBull(object):
 
 
         now = QDateTime.currentDateTime()
-        date = (now.toUTC().toString("yyyy-MM-dd HH:mm:ss"))
+        date = (now.toUTC().toString("dd-MM-yyyyHH:mm:ss"))
         conn = sqlite3.connect("traffic.db3")
         cur = conn.cursor()
         #conn.set_trace_callback(print)
@@ -251,12 +245,12 @@ class Ui_FormBull(object):
         global bull_id
 
         comments1 = format(self.lineEdit_2.text())
-        comments = re.sub("[^A-Za-z0-9*\-\s]+", " ", comments1)
+        comments = re.sub(r"[^A-Za-z0-9*\-\s]+", " ", comments1)
 
         if len(comments) < 4 :
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText("Bulletin too short")
+            msg.setWindowTitle("CommStat QXT error")
+            msg.setText("Boletin demasiado corto")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             msg.raise_()
@@ -289,7 +283,7 @@ class Ui_FormBull(object):
 
 
         now = QDateTime.currentDateTime()
-        date = (now.toUTC().toString("yyyy-MM-dd HH:mm:ss"))
+        date = (now.toUTC().toString("dd-MM-yyyy HH:mm:ss"))
         conn = sqlite3.connect("traffic.db3")
         cur = conn.cursor()
         #conn.set_trace_callback(print)
@@ -326,8 +320,6 @@ class Ui_FormBull(object):
                     cursor.close()
                     self.find_bull_id()
 
-
-
             cursor.close()
 
         except sqlite3.Error as error:
@@ -337,7 +329,6 @@ class Ui_FormBull(object):
                 sqliteConnection.close()
          #       print("The SQLite connection is closed")
     
-
     def closeapp(self):
         self.MainWindow.close()
 
