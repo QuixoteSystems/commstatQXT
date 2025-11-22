@@ -1,6 +1,6 @@
 # CommStat QXT
 ## CommStat QXT is still in under development
-CommStat QXT is a modified and tranlated version of the original CommStat One Ver 1.0.5 and CommStat v2[https://gitlab.com/amrron/commstat-v2]
+CommStat QXT is a modified and tranlated version of the original [CommStat One Ver 1.0.5](https://github.com/W5DMH/commstatone) and [CommStat v2](https://gitlab.com/amrron/commstat-v2)
 
 Commstat QXT is a Python version of the CommStat software designed to run on on Win 10, 11 AND Linux</b><br>
 
