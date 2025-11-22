@@ -2,15 +2,12 @@
 ## CommStat QXT is still in under development
 CommStat QXT is a modified and tranlated version of the original CommStat One Ver 1.0.5 and CommStat v2[https://gitlab.com/amrron/commstat-v2]
 
-Commstat One is a Python version of the CommStat software <b>designed to run on on Win 10, 11 AND Linux</b><br>
+Commstat QXT is a Python version of the CommStat software designed to run on on Win 10, 11 AND Linux</b><br>
 
 
 ## Installation
-<NOTE : ALL USERS MUST RUN INSTALL ON THIS VERSION!
 
-Commstat One WINDOWS INSTALL PROCEDURE
-
-NOTE : Saavy users can ```git clone https://github.com/QuixoteSystems/commstatQXT.git```
+- Commstat One WINDOWS INSTALL PROCEDURE NOTE : Saavy users can ```git clone https://github.com/QuixoteSystems/commstatQXT.git```
 
  To install, simply unzip the zipped folder below then:
  ```
@@ -20,10 +17,10 @@ NOTE : Saavy users can ```git clone https://github.com/QuixoteSystems/commstatQX
 
  You should get your settings popup, complete the settings then :
 
- ```python commstat.py``` or ```python3 commstat.py``` (if your system requires python3) <b> NOT commstatx.py this has changed to commstat.py</b> 
+ ```python commstat.py``` or ```python3 commstat.py``` (if your system requires python3)
 
  
-Commstat One LINUX INSTALL PROCEDURE (Mint 20.03 & 21.1 Supported, Pi4 64bit may work)
+- Commstat One LINUX INSTALL PROCEDURE (Mint 20.03 & 21.1 Supported, Pi4 64bit may work)
 NOTE : Saavy users can ```git clone https://github.com/QuixoteSystems/commstatQXT.git```
 ```
 cd commstatone
