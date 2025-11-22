@@ -2,30 +2,37 @@
 ## CommStat QXT is still in under development
 CommStat QXT is a modified and tranlated version of the original CommStat One Ver 1.0.5 and CommStat v2[https://gitlab.com/amrron/commstat-v2]
 
-Commstat One is a Python version of the CommStat software <b>designed to run on on Win10 AND Linux</b><br>
-<br><br>
-<b>NOTE : ALL USERS MUST RUN INSTALL ON THIS VERSION!<br></b>
-<br>
+Commstat One is a Python version of the CommStat software <b>designed to run on on Win 10, 11 AND Linux</b><br>
 
-<b>Commstat One WINDOWS INSTALL PROCEDURE</B>
-<br>
-NOTE : Saavy users can "git clone https://github.com/W5DMH/commstatone.git"
-<br>
- To install, simply unzip the zipped folder below then: <br>
- <b>Type : cd commstatone <br>
-  Type : python install.py </b> (or use : python3 install.py  if necessary) <br>
- You should get your settings popup, complete the settings then :<br>
- <b>Type : python commstat.py    or    python3 commstat.py (if your system requires python3) <b> NOT commstatx.py this has changed to commstat.py</b> 
+
+## Installation
+<NOTE : ALL USERS MUST RUN INSTALL ON THIS VERSION!
+
+Commstat One WINDOWS INSTALL PROCEDURE
+
+NOTE : Saavy users can ```git clone https://github.com/QuixoteSystems/commstatQXT.git```
+
+ To install, simply unzip the zipped folder below then:
+ ```
+ cd commstatone
+ python install.py #(or use : python3 install.py  if necessary)
+```
+
+ You should get your settings popup, complete the settings then :
+
+ ```python commstat.py``` or ```python3 commstat.py``` (if your system requires python3) <b> NOT commstatx.py this has changed to commstat.py</b> 
 
  
-<b>Commstat One LINUX INSTALL PROCEDURE (Mint 20.03 & 21.1 Supported, Pi4 64bit may work)</B><br>
-NOTE : Saavy users can "git clone https://github.com/W5DMH/commstatone.git"<br>
- <b>Type : cd commstatone <br>
- type : chmod +x linuxinstall.sh <br>
- type : ./linuxinstall.sh <br>
- enter your sudo password <br>
- After some installation you should get your settings popup, complete the settings then :<br>
- <b>Type : python commstat.py    or    python3 commstat.py (if your system requires python3) <b> NOT commstatx.py this has changed to commstat.py</b> 
+Commstat One LINUX INSTALL PROCEDURE (Mint 20.03 & 21.1 Supported, Pi4 64bit may work)
+NOTE : Saavy users can ```git clone https://github.com/QuixoteSystems/commstatQXT.git```
+```
+cd commstatone
+chmod +x linuxinstall.sh
+./linuxinstall.sh
+```
+ enter your sudo password
+ After some installation you should get your settings popup, complete the settings then :
+ ```python commstat.py```  or  ```python3 commstat.py``` (if your system requires python3) NOT commstatx.py this has changed to commstat.py
 
 ---
 ### Credits:
