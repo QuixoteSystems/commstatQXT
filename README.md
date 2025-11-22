@@ -17,8 +17,6 @@ NOTE : Saavy users can "git clone https://github.com/W5DMH/commstatone.git"
  You should get your settings popup, complete the settings then :<br>
  <b>Type : python commstat.py    or    python3 commstat.py (if your system requires python3) <b> NOT commstatx.py this has changed to commstat.py</b> 
 
-<br>
- <br>
  
 <b>Commstat One LINUX INSTALL PROCEDURE (Mint 20.03 & 21.1 Supported, Pi4 64bit may work)</B><br>
 NOTE : Saavy users can "git clone https://github.com/W5DMH/commstatone.git"<br>
@@ -31,15 +29,14 @@ NOTE : Saavy users can "git clone https://github.com/W5DMH/commstatone.git"<br>
 
 <br><br><br>
 =======
- 
-<h3>Here is a link to the archive file:&nbsp;<a href="https://github.com/W5DMH/commstatone/raw/main/commstatone.zip" target="_blank" rel="noopener">CommStat One 1.0.5 for Win10 & Win11 & Linux </a></h3>
-
 
 
 ### Credits:
 **m0iax:** for his JS8CallAPISupport Script as that is what makes the transmitting possible.See the rest of his JS8Call Tools here : https://github.com/m0iax
-**W5DMH:** for all his hard work doing first version of (CommStat One)[https://github.com/W5DMH/commstatone.git]
-**KD9DSS:** for his version 2 and 2.3 with offline maps and more: (CommStat v2)[https://gitlab.com/amrron/commstat-v2]
+
+**W5DMH:** for all his hard work doing first version of [CommStat One](https://github.com/W5DMH/commstatone.git)
+
+**KD9DSS:** for his version 2 and 2.3 with offline maps and more: [CommStat v2](https://gitlab.com/amrron/commstat-v2)
 
 If you like this work:
 
