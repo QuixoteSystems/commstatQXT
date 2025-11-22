@@ -36,6 +36,7 @@ from statrep import Ui_FormStatRep
 from bulletin import Ui_FormBull
 from marquee import Ui_FormMarquee
 from checkin import Ui_FormCheckin
+from beacon import Ui_FormBeacon
 from members import Ui_FormMembers
 from heardlist import Ui_FormHeard
 from statack import Ui_FormStatack
@@ -61,7 +62,7 @@ def start_local_server(port=8000):
             return p  # Return the successful port
         except OSError as e:
             if e.errno == 98:  # Address already in use
-                print(f"Puerto {p} en uso, probando el siguiente puerto...")
+                print(f"Puerto {p} esta en uso, probando el siguiente puerto...")
                 continue
             raise
     print("No pudo iniciar el servidor: todos los puertos estan en uso")
@@ -90,8 +91,8 @@ bull1 = 1
 bull2 = 3
 OS_Directed = ""
 
-statelist = ['AP', 'AO', 'BO', 'CN', 'CM', 'CO', 'DN', 'DM', 'DL', 'DO', 'EN', 'EM','EL','EO','FN','FM','FO', 'IL', 'IM', 'IN', 'JM', 'JN']
-start = '2025-01-01 05:00'
+statelist = ['AP', 'AO', 'BO', 'CN', 'CM', 'CO', 'DN', 'DM', 'DL', 'DO', 'EN', 'EM','EL','EO','FN','FM','FO','IL', 'IM', 'IN', 'JM', 'JN']
+start = '2023-01-01 05:00'
 end = '2030-02-23 00:56'
 green = True
 yellow = True
@@ -255,15 +256,29 @@ class Ui_MainWindow(QWidget):
         self.gridLayout_2.setRowStretch(1, 1)
         self.gridLayout_2.setRowStretch(4, 1)
 
+## BAR MENU
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 886, 22))
         self.menubar.setObjectName("menubar")
+        
+## MAIN MENU        
         self.menuEXIT = QtWidgets.QMenu(self.menubar)
         self.menuEXIT.setObjectName("menuEXIT")
+
+## TX MENU
+        self.menuTX = QtWidgets.QMenu(self.menubar)
+        self.menuTX.setObjectName("menuTX")
+        
+## HELP MENU
+        self.menuHELP = QtWidgets.QMenu(self.menubar)
+        self.menuHELP.setObjectName("menuHELP")
+        
+## STATUS BAR          
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
+ 
         MainWindow.setStatusBar(self.statusbar)
         self.actionJS8EMAIL = QtWidgets.QAction(MainWindow)
         self.actionJS8EMAIL.setObjectName("actionJS8EMAIL")
@@ -271,19 +286,16 @@ class Ui_MainWindow(QWidget):
         self.actionJS8SMS.setObjectName("actionJS8SMS")
         self.actionSTATREP = QtWidgets.QAction(MainWindow)
         self.actionSTATREP.setObjectName("actionSTATREP")
-
         self.actionNET_CHECK_IN = QtWidgets.QAction(MainWindow)
         self.actionNET_CHECK_IN.setObjectName("actionNET_CHECK_IN")
-
+        self.actionBEACON = QtWidgets.QAction(MainWindow)
+        self.actionBEACON.setObjectName("actionBEACON")
         self.actionFilter = QtWidgets.QAction(MainWindow)
         self.actionFilter.setObjectName("actionFilter")
-
         self.actionData = QtWidgets.QAction(MainWindow)
         self.actionData.setObjectName("actionData")
-
         self.actionMEMBER_LIST = QtWidgets.QAction(MainWindow)
         self.actionMEMBER_LIST.setObjectName("actionMEMBER_LIST")
-
         self.actionSTATREP_ACK = QtWidgets.QAction(MainWindow)
         self.actionSTATREP_ACK.setObjectName("actionSTATREP_ACK")
         self.actionNET_ROSTER = QtWidgets.QAction(MainWindow)
@@ -294,56 +306,68 @@ class Ui_MainWindow(QWidget):
         self.actionFLASH_BULLETIN.setObjectName("actionFLASH_BULLETIN")
         self.actionSETTINGS = QtWidgets.QAction(MainWindow)
         self.actionSETTINGS.setObjectName("actionSETTINGS")
-        
         self.actionHELP = QtWidgets.QAction(MainWindow)
         self.actionHELP.setObjectName("actionHELP")
         self.actionABOUT = QtWidgets.QAction(MainWindow)
         self.actionABOUT.setObjectName("actionABOUT")
-
         self.actionEXIT_2 = QtWidgets.QAction(MainWindow)
         self.actionEXIT_2.setObjectName("actionEXIT_2")
 
-        self.menuEXIT.addAction(self.actionJS8EMAIL)
-        self.actionJS8EMAIL.triggered.connect(self.js8email_window)
-        self.menuEXIT.addAction(self.actionJS8SMS)
-        self.actionJS8SMS.triggered.connect(self.js8sms_window)
-        self.menuEXIT.addAction(self.actionSTATREP)
-        self.actionSTATREP.triggered.connect(self.statrep_window)
-        self.menuEXIT.addAction(self.actionNET_CHECK_IN)
-        self.actionNET_CHECK_IN.triggered.connect(self.checkin_window)
-
+## MAIN MENU OPTIONS         
         self.menuEXIT.addAction(self.actionMEMBER_LIST)
         self.actionMEMBER_LIST.triggered.connect(self.members_window)
-
-        self.menuEXIT.addSeparator()
-        self.menuEXIT.addAction(self.actionSTATREP_ACK)
-        self.actionSTATREP_ACK.triggered.connect(self.statack_window)
         self.menuEXIT.addAction(self.actionNET_ROSTER)
         self.actionNET_ROSTER.triggered.connect(self.thread_netmanage)
-        self.menuEXIT.addAction(self.actionNEW_MARQUEE)
-        self.actionNEW_MARQUEE.triggered.connect(self.marquee_window)
-        self.menuEXIT.addAction(self.actionFLASH_BULLETIN)
-        self.actionFLASH_BULLETIN.triggered.connect(self.bull_window)
+
         self.menuEXIT.addSeparator()
 
         self.menuEXIT.addAction(self.actionFilter)
         self.actionFilter.triggered.connect(self.filter_window)
-
         self.menuEXIT.addAction(self.actionData)
         self.actionData.triggered.connect(self.data_window)
-
         self.menuEXIT.addAction(self.actionSETTINGS)
         self.actionSETTINGS.triggered.connect(self.settings_window)
 
-        self.menuEXIT.addAction(self.actionHELP)
-        self.actionHELP.triggered.connect(self.open_webbrowser)
-        self.menuEXIT.addAction(self.actionABOUT)
-        self.actionABOUT.triggered.connect(self.about_window)
-
         self.menuEXIT.addSeparator()
+        
         self.menuEXIT.addAction(self.actionEXIT_2)
         self.actionEXIT_2.triggered.connect(qApp.quit)
+
+## TX MENU OPTIONS
+        self.menuTX.addAction(self.actionNET_CHECK_IN)
+        self.actionNET_CHECK_IN.triggered.connect(self.checkin_window)      
+        self.menuTX.addAction(self.actionSTATREP)
+        self.actionSTATREP.triggered.connect(self.statrep_window)
+        self.menuTX.addAction(self.actionSTATREP_ACK)
+        self.actionSTATREP_ACK.triggered.connect(self.statack_window)
+        
+        self.menuTX.addSeparator()
+        
+        self.menuTX.addAction(self.actionNEW_MARQUEE)
+        self.actionNEW_MARQUEE.triggered.connect(self.marquee_window)
+        self.menuTX.addAction(self.actionFLASH_BULLETIN)
+        self.actionFLASH_BULLETIN.triggered.connect(self.bull_window)
+        
+        self.menuTX.addAction(self.actionBEACON)
+        self.actionBEACON.triggered.connect(self.beacon_window) 
+        
+        self.menuTX.addSeparator()
+        
+        self.menuTX.addAction(self.actionJS8EMAIL)
+        self.actionJS8EMAIL.triggered.connect(self.js8email_window)
+        self.menuTX.addAction(self.actionJS8SMS)
+        self.actionJS8SMS.triggered.connect(self.js8sms_window)
+
+## HELP MENU OPTIONS 
+        self.menuHELP.addAction(self.actionHELP)
+        self.actionHELP.triggered.connect(self.open_webbrowser)
+        self.menuHELP.addAction(self.actionABOUT)
+        self.actionABOUT.triggered.connect(self.about_window)
+        
+## ADDING MAIN MENUS
         self.menubar.addAction(self.menuEXIT.menuAction())
+        self.menubar.addAction(self.menuTX.menuAction())
+        self.menubar.addAction(self.menuHELP.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -388,25 +412,34 @@ class Ui_MainWindow(QWidget):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "CommStatQXT v2.3.3 - Mapas Offline - Modificado por Quixote"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "CommStat QXT v2.3.3 - (Mapas Offline)"))
         self.actionFilter.setText(_translate("MainWindow", "Filtro de Pantalla"))
         self.actionData.setText(_translate("MainWindow", "Gestor de Datos"))
         self.label.setText(_translate("MainWindow", "TextLabel Anuncio"))
         self.label_2.setText(_translate("MainWindow", "TextLabel Clock"))
+        
         self.menuEXIT.setTitle(_translate("MainWindow", "Menu"))
-        self.actionJS8EMAIL.setText(_translate("MainWindow", "JS8-EMAIL"))
-        self.actionJS8SMS.setText(_translate("MainWindow", "JS8-SMS"))
-        self.actionSTATREP.setText(_translate("MainWindow", "STATREP"))
-        self.actionNET_CHECK_IN.setText(_translate("MainWindow", "Check-in"))
+        self.menuTX.setTitle(_translate("MainWindow", "Transmitir"))
+        self.menuHELP.setTitle(_translate("MainWindow", "Ayuda"))
+        
         self.actionMEMBER_LIST.setText(_translate("MainWindow", "Lista de Miembros"))
         self.actionSTATREP_ACK.setText(_translate("MainWindow", "STATREP Ack"))
         self.actionNET_ROSTER.setText(_translate("MainWindow", "Gestor de Red"))
+        self.actionSETTINGS.setText(_translate("MainWindow", "Ajustes"))
+        self.actionEXIT_2.setText(_translate("MainWindow", "Salir"))
+        
+        self.actionJS8EMAIL.setText(_translate("MainWindow", "JS8-Email"))
+        self.actionJS8SMS.setText(_translate("MainWindow", "JS8-SMS"))
+        self.actionSTATREP.setText(_translate("MainWindow", "STATREP"))
+        self.actionNET_CHECK_IN.setText(_translate("MainWindow", "Check-in"))
         self.actionNEW_MARQUEE.setText(_translate("MainWindow", "Nuevo Anuncio"))
         self.actionFLASH_BULLETIN.setText(_translate("MainWindow", "Boletin Inmediato"))
-        self.actionSETTINGS.setText(_translate("MainWindow", "Ajustes"))
+        self.actionBEACON.setText(_translate("MainWindow", "Programar Baliza"))
+        
         self.actionHELP.setText(_translate("MainWindow", "Ayuda"))
-        self.actionABOUT.setText(_translate("MainWindow", "About"))
-        self.actionEXIT_2.setText(_translate("MainWindow", "Salir"))
+        self.actionABOUT.setText(_translate("MainWindow", "Acerca de..."))
+        
+        
 
     def oscheck(self):
         global OS
@@ -530,6 +563,12 @@ class Ui_MainWindow(QWidget):
     def checkin_window(self):
         dialog = QtWidgets.QDialog()
         dialog.ui = Ui_FormCheckin()
+        dialog.ui.setupUi(dialog)
+        dialog.exec_()
+        
+    def beacon_window(self):
+        dialog = QtWidgets.QDialog()
+        dialog.ui = Ui_FormBeacon()
         dialog.ui.setupUi(dialog)
         dialog.exec_()
 
@@ -910,4 +949,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
