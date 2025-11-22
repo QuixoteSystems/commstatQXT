@@ -27,12 +27,9 @@ NOTE : Saavy users can "git clone https://github.com/W5DMH/commstatone.git"<br>
  After some installation you should get your settings popup, complete the settings then :<br>
  <b>Type : python commstat.py    or    python3 commstat.py (if your system requires python3) <b> NOT commstatx.py this has changed to commstat.py</b> 
 
-<br><br><br>
-=======
-
-
+---
 ### Credits:
-**m0iax:** for his JS8CallAPISupport Script as that is what makes the transmitting possible.See the rest of his JS8Call Tools here : https://github.com/m0iax
+**m0iax:** for his JS8CallAPISupport Script as that is what makes the transmitting possible. Look [JS8Call Tools](https://github.com/m0iax)
 
 **W5DMH:** for all his hard work doing first version of [CommStat One](https://github.com/W5DMH/commstatone.git)
 
