@@ -36,10 +36,11 @@ NOTE : Saavy users can "git clone https://github.com/W5DMH/commstatone.git"<br>
 
 
 
+### Credits:
+**m0iax:** for his JS8CallAPISupport Script as that is what makes the transmitting possible.See the rest of his JS8Call Tools here : https://github.com/m0iax
+**W5DMH:** for all his hard work doing first version of (CommStat One)[https://github.com/W5DMH/commstatone.git]
+**KD9DSS:** for his version 2 and 2.3 with offline maps and more: (CommStat v2)[https://gitlab.com/amrron/commstat-v2]
 
+If you like this work:
 
-Get CommStat Support at: <br>
-https://groups.io/g/CommStat
-
-I must give credit to m0iax for his JS8CallAPISupport Script as that is what makes the transmitting possible.See the rest of his JS8Call Tools here : https://github.com/m0iax
-<br>
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M81CV1EX)
