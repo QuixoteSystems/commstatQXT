@@ -20,6 +20,70 @@ selectedgroup = ""
 
 # Global to allow stop later in a different windows
 beacon_timer = None
+beacon_owner = None  # To store who send the tx_once()
+
+
+# Notificacion tipo Toast
+class Toast(QtWidgets.QWidget):
+    def __init__(self, message, parent=None, duration=3000, icon_path=None):
+        super().__init__(parent)
+
+        # Ventana sin bordes
+        self.setWindowFlags(
+            QtCore.Qt.FramelessWindowHint |
+            QtCore.Qt.Tool |
+            QtCore.Qt.WindowStaysOnTopHint |
+            QtCore.Qt.X11BypassWindowManagerHint
+        )
+
+        # Fondo normal (sin transparencia)
+        self.setAttribute(QtCore.Qt.WA_StyledBackground, True)
+
+        # ---- CONTENEDOR PRINCIPAL ----
+        layout = QtWidgets.QHBoxLayout()
+        layout.setContentsMargins(12, 8, 12, 8)
+        self.setLayout(layout)
+
+        # ---- ICONO ----
+        if icon_path is not None:
+            pixmap = QtGui.QPixmap(icon_path)
+            icon_label = QtWidgets.QLabel()
+            icon_label.setPixmap(pixmap.scaled(24, 24, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
+            layout.addWidget(icon_label)
+
+        # ---- TEXTO ----
+        text_label = QtWidgets.QLabel(message)
+        text_label.setStyleSheet("""
+            QLabel {
+                color: white;
+                font-size: 14px;
+            }
+        """)
+        layout.addWidget(text_label)
+
+        # ---- ESTILO DEL TOAST ----
+        self.setStyleSheet("""
+            QWidget {
+                background-color: rgb(0, 150, 0); /* Verde sólido */
+                border-radius: 8px;
+            }
+        """)
+
+        self.adjustSize()
+
+        # Timer para cerrar
+        QtCore.QTimer.singleShot(duration, self.close)
+
+    def show_at(self, parent_widget):
+        parent_rect = parent_widget.geometry()
+
+        # 20 px desde el borde derecho e inferior
+        x = parent_rect.x() + parent_rect.width() - self.width() - 20
+        y = parent_rect.y() + parent_rect.height() - self.height() - 20
+
+        self.move(x, y)
+        self.show()
+
 
 
 class Ui_FormBeacon(object):
@@ -106,8 +170,6 @@ class Ui_FormBeacon(object):
         self.api = js8callAPIsupport.js8CallUDPAPICalls((self.serveripad),
                                                         int(self.servport))
         
-        
-
         self.MainWindow.setWindowFlags(
             QtCore.Qt.Window |
             QtCore.Qt.CustomizeWindowHint |
@@ -116,19 +178,15 @@ class Ui_FormBeacon(object):
             QtCore.Qt.WindowStaysOnTopHint
         )
         
-        # QTimer for periodical beacons
-        self.beacon_timer = QtCore.QTimer(self.MainWindow)
-        self.beacon_timer.setSingleShot(False)  # it repeats
-        self.beacon_timer.timeout.connect(self.tx_once)
-        
         # Read the current Beacon status
         self.update_beacon_status()
 
 
     def retranslateUi(self, FormBeacon):
+        global beacon_timer
         _translate = QtCore.QCoreApplication.translate
         FormBeacon.setWindowTitle(_translate("FormBeacon", "Baliza de CommStat QXT"))
-        self.lineEdit_2.setText(_translate("FormBeacon", "60"))
+        self.lineEdit_2.setText(_translate("FormBeacon", "60" ))
         self.label.setText(_translate("FormBeacon", 
                 """<html><head/><body><p>Esta baliza es una peticion tipo SNR? (Signal-to-Noise Ratio) y se enviara al Grupo automáticamente </p><p> 
                                          en el intervalo que definas abajo. Por lo que las estaciones que escuchen tu baliza responderán con </p><p>
@@ -145,8 +203,9 @@ class Ui_FormBeacon(object):
     def update_beacon_status(self):
         global beacon_timer
         if beacon_timer and beacon_timer.isActive():
+            interval = beacon_timer.interval() / 60000
             # Baliza activa
-            self.label_status.setText("Estado baliza: ACTIVA")
+            self.label_status.setText(f"Estado baliza: ACTIVA cada {int(interval)} min")
             self.label_status.setStyleSheet("color: green;")
         else:
             # Baliza detenida
@@ -176,32 +235,67 @@ class Ui_FormBeacon(object):
             serverport = format(systeminfo["port"])
             state = format(systeminfo["state"])
             selectedgroup = format(userinfo["selectedgroup"])
+    
+    
+    def show_auto_msg(self, message):
+        # Si ya hay un mensaje anterior, lo cerramos
+        if hasattr(self, "msg_box") and self.msg_box is not None:
+            self.msg_box.close()
 
+        # Creamos y guardamos la referencia en self
+        self.msg_box = QMessageBox(self.MainWindow)  # o None si ya cerraste esa ventana
+        self.msg_box.setWindowTitle("CommStat QXT Tx")
+        self.msg_box.setText("Baliza enviada: " + message)
+        self.msg_box.setIcon(QMessageBox.Information)
+        self.msg_box.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
+        self.msg_box.setStandardButtons(QMessageBox.Ok)
+
+        self.msg_box.show()
+
+        # Cerrar automáticamente a los 60 segundos (60000 ms)
+        QtCore.QTimer.singleShot(60000, self.msg_box.accept)
+
+
+    #from PyQt5 import QtWidgets
 
     def tx_once(self):
-            group = "@"+selectedgroup
-            message = f"{group} SNR?"
-            messageType = js8callAPIsupport.TYPE_TX_SEND
-            messageString = message
+        global selectedgroup
 
-            #res = QMessageBox.question(FormBeacon, "Question", "Are you sure?", QMessageBox.Yes | QMessageBox.No)
-            msg = QMessageBox()
-            msg.setWindowTitle("CommStat QXT Tx")
-            msg.setText("La Baliza será : "+message)
-            msg.setIcon(QMessageBox.Information)
-            msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
-            x = msg.exec_()
+        group = "@" + selectedgroup
+        message = f"{group} SNR?"
+        messageType = js8callAPIsupport.TYPE_TX_SEND
 
-            self.sendMessage(messageType, messageString)
-            #self.closeapp()
+        # 1) Enviar la baliza
+        self.sendMessage(messageType, message)
 
-            
+        # 2) Intentar localizar la ventana principal (QMainWindow)
+        mainwin = None
+        for w in QtWidgets.QApplication.topLevelWidgets():
+            if isinstance(w, QtWidgets.QMainWindow):
+                mainwin = w
+                break
+
+        # 3) Si no encontramos QMainWindow, usar la ventana de beacon como fallback
+        if mainwin is None:
+            mainwin = self.MainWindow
+
+        # 4) Crear el toast SIEMPRE antes de usarlo
+        toast = Toast(
+            message=f"Baliza enviada: {message}",
+            parent=mainwin,
+            duration=10000,
+            icon_path="icon_ok.png"
+        )
+        toast.show_at(mainwin)
+
+
+
     def transmit(self):
         global selectedgroup
         global callsign
         global state
-        global beacon_timer
-        
+        global beacon_timer, beacon_owner
+            
         mins = format(self.lineEdit_2.text())
         minutes_str = re.sub(r"[^0-9]+", "", mins)
 
@@ -216,7 +310,7 @@ class Ui_FormBeacon(object):
 
         minutes = int(minutes_str)
 
-        if minutes < 60:
+        if minutes < 1:
             msg = QMessageBox()
             msg.setWindowTitle("CommStat QXT error")
             msg.setText("Intervalo demasiado corto. Mínimo 60 min")
@@ -225,27 +319,32 @@ class Ui_FormBeacon(object):
             msg.exec_()
             return
 
-        # intervalo en milisegundos para QTimer
         interval_ms = minutes * 60 * 1000
 
         print("Starting QXT SNR Beacon...")
         print(f"Sending '@{selectedgroup} SNR?' now and each {minutes} min")
 
-        # 1) Enviar UNA VEZ ahora
+        # 1) Enviar una vez ahora
         self.tx_once()
-        
-        beacon_timer = QtCore.QTimer()
-        beacon_timer.timeout.connect(self.tx_once)
-        # 2) Programar el timer para las siguientes veces
+
+        # 2) Crear el timer global si no existe
+        if beacon_timer is None:
+            beacon_timer = QtCore.QTimer()     # SIN padre
+            beacon_timer.setSingleShot(False)
+            beacon_timer.timeout.connect(self.tx_once)
+            beacon_owner = self  # guardamos referencia para que no lo recoja el GC
+
+        # 3) Arrancar/actualizar intervalo
         beacon_timer.start(interval_ms)
-        # Updating beacon status
+
+        # 4) Actualizar el status visual
         self.update_beacon_status()
 
-        # Close windows but dont kill loop process
+        # 5) Cerrar solo la ventana de beacon (el timer sigue vivo)
         self.MainWindow.close()
+
     
-    
-    
+  
     def stop(self):
         global beacon_timer
         if beacon_timer:
@@ -257,6 +356,7 @@ class Ui_FormBeacon(object):
               #  QMessageBox.warning(None, "Baliza", "No se pudo detener la baliza")
         self.update_beacon_status()
         self.MainWindow.close()
+
         
 
     def closeapp(self):
@@ -266,7 +366,7 @@ class Ui_FormBeacon(object):
     def sendMessage(self, messageType, messageText):
         self.api.sendMessage(messageType, messageText)
 
-
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
