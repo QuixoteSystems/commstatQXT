@@ -23,7 +23,7 @@ import maidenhead as mh
 start = ""
 end = ""
 loadflag = 0
-statelist = ['AP', 'AO', 'AO', 'BO', 'CN', 'CM', 'CO', 'DN', 'DM', 'DL', 'DO', 'EN', 'EM','EL','EO','FN','FM','FO']
+statelist = ['AP', 'AO', 'AO', 'BO', 'CN', 'CM', 'CO', 'DN', 'DM', 'DL', 'DO', 'EN', 'EM','EL','EO','FN','FM','FO','IL','IM','IN','JM','JN']
 
 class UI(QMainWindow):
     def __init__(self):
@@ -32,11 +32,6 @@ class UI(QMainWindow):
 
         #load the ui file
         uic.loadUi("commdata2.ui", self)
-
-
-
-
-
 
 
         self.report_name = self.findChild(QLineEdit,"lineEditName")
@@ -57,8 +52,6 @@ class UI(QMainWindow):
         #self.listView = self.findChild(QListView, "listViewstate")
         #self.listView = QtGui.QListView(Dialog)
         #self.listView.setObjectName(_fromUtf8("listView"))
-
-
 
         #model = QtGui.QStandardItemModel()
         #self.listView.setModel(model)
@@ -91,9 +84,7 @@ class UI(QMainWindow):
         self.stateclear.hide()
         self.stateclose.clicked.connect(self.stateselected)
         self.stateclear.clicked.connect(self.stateclearsel)
-        self.stateslabel.setText("All Grids Shown")
-
-
+        self.stateslabel.setText("Todos los Grids mostrados")
 
 
         now = QDateTime.currentDateTime()
@@ -118,9 +109,8 @@ class UI(QMainWindow):
         if loadflag > 0:
             print("SR Report Loaded")
         else:
-            start = before.toString("yyyy-MM-dd HH:mm")
-            #start = now.toString("yyyy-MM-dd HH:mm")
-            end = now.toString("yyyy-MM-dd HH:mm")
+            start = before.toString("dd-MM-yyyy HH:mm")
+            end = now.toString("dd-MM-yyyy HH:mm")
 
             #self.start_datetime..toString("yyyy-MM-dd HH:mm"))
             #self.end_datetime.dateTime().toString("yyyy-MM-dd HH:mm"))
@@ -128,10 +118,8 @@ class UI(QMainWindow):
             self.loadData()
 
 
-
-
     def importcommstat(self):
-        fname = QFileDialog.getOpenFileName(self, 'Open file','', "Image files (*.jpg *.csv)")
+        fname = QFileDialog.getOpenFileName(self, 'Abrir archivo','', "Archivo de imagen (*.jpg *.csv)")
         filetoopen = (fname[0])
         # load the data into a Pandas DataFrame
         importdata = pd.read_csv(filetoopen)
@@ -161,16 +149,16 @@ class UI(QMainWindow):
         global selectedgroup
 
         try:
-            format_data = "%Y-%m-%d %H:%M"
+            format_data = "%d-%m-%Y %H:%M"
             netstart = datetime.strptime(start, format_data)
 
-            format_data = "%Y-%m-%d %H:%M"
+            format_data = "%d-%m-%Y %H:%M"
             netend = datetime.strptime(end, format_data)
 
             netstartB = str(start.replace(" ", "-"))
             netstartB = netstartB.replace(":","-")
             net_data_name = ("Commstat_SR_Data_"+(netstartB)+".csv")
-            print("Saved data file : "+net_data_name)
+            print("Guardar archivo : "+net_data_name)
 
             conn = sqlite3.connect('traffic.db3')
             #clients = pd.read_sql_query( "SELECT datetime, SRid, callsign, groupname, grid, prec, status, commpwr, pubwtr, med, ota, trav, net, fuel, food, crime, civil, political, comments FROM StatRep_Data WHERE groupname = ? AND datetime BETWEEN ? AND ?", conn, params=(selectedgroup, start, end))
@@ -181,8 +169,8 @@ class UI(QMainWindow):
             conn.close()
             print("Saved data file : " + net_data_name)
             msg = QMessageBox()
-            msg.setWindowTitle("CommStat Data Export Success!")
-            msg.setText("Commstat Data Export succeeded in saving : "+net_data_name)
+            msg.setWindowTitle("CommStat QXT Exportación Exitosa!")
+            msg.setText("Commstat QXT exportacion guardada en : "+net_data_name)
             msg.setIcon(QMessageBox.Information)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -190,8 +178,8 @@ class UI(QMainWindow):
         except Exception as ex:
             print("Failed to write file : "+str(ex))
             msg = QMessageBox()
-            msg.setWindowTitle("CommStat Data Export Error")
-            msg.setText("Commstat Data Export failed for : "+str(ex))
+            msg.setWindowTitle("CommStat QXT Error de Exportacion")
+            msg.setText("Commstat QXT ha fallado por : "+str(ex))
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -242,12 +230,12 @@ class UI(QMainWindow):
         #listWidget.setSelectionMode(2)
         self.listWidget.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.window.setFixedWidth(80)
-        self.window.setWindowTitle("Select Grid(s)")
+        self.window.setWindowTitle("Selecciona Grid(s)")
 
         #QListWidgetItem("Geeks", listWidget)
         #QListWidgetItem("For", listWidget)
         #QListWidgetItem("Geeks", listWidget)
-        states = ['AP', 'AO', 'AO', 'BO', 'CN', 'CM', 'CO', 'DN', 'DM', 'DL', 'DO', 'EN', 'EM','EL','EO','FN','FM','FO']
+        states = ['AP', 'AO', 'AO', 'BO', 'CN', 'CM', 'CO', 'DN', 'DM', 'DL', 'DO', 'EN', 'EM','EL','EO','FN','FM','FO','IL','IM','IN','JM','JN']
         for state in states:
             QListWidgetItem(state ,self.listWidget)
 
@@ -292,14 +280,13 @@ class UI(QMainWindow):
         global statelist
         statelist = []
         msg = QMessageBox()
-        msg.setWindowTitle("CommStat Report Grid Filter Cleared")
-        msg.setText("Grid Filter has been cleared, please reload display")
+        msg.setWindowTitle("CommStat QXT Filtro de Reporte Grid Limpio")
+        msg.setText("Filtro de Grid ha sido limpiado, por favor recarga la pantalla")
         msg.setIcon(QMessageBox.Information)
         msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
         x = msg.exec_()  # this will show our messagebox
-        self.stateslabel.setText("All Grids Shown")
+        self.stateslabel.setText("Todos los Grids Mostrados")
         self.stateclear.hide()
-
 
 
 
@@ -319,15 +306,13 @@ class UI(QMainWindow):
             #start = (self.start_datetime.dateTime().toString("yyyy-MM-dd HH:mm"))
             #end = (self.end_datetime.dateTime().toString("yyyy-MM-dd HH:mm"))
 
-            print("launching default SR Report Display")
+            print("cargando pantalla de Reporte SR por defecto")
             loadflag = 1
             #start = (self.start_datetime.dateTime().toString("yyyy-MM-dd HH:mm"))
             #end = (self.end_datetime.dateTime().toString("yyyy-MM-dd HH:mm"))
         else:
-            start = (self.start_datetime.dateTime().toString("yyyy-MM-dd HH:mm"))
-            end = (self.end_datetime.dateTime().toString("yyyy-MM-dd HH:mm"))
-
-
+            start = (self.start_datetime.dateTime().toString("dd-MM-yyyy HH:mm"))
+            end = (self.end_datetime.dateTime().toString("dd-MM-yyyy HH:mm"))
 
 
 
@@ -375,7 +360,7 @@ class UI(QMainWindow):
 
         table = self.tableWidget
         table.setHorizontalHeaderLabels(
-            str("Date Time UTC ;ID ;Callsign; Grid ; Priority; Stat; Pow; H2O; Med; Com; Trv; Int; Fuel; Food; Cri; Civ; Pol; Remarks").split(
+            str("Fecha Hora UTC ;ID ;Indicativo; Grid ; Prioridad; Stat; Pow; H2O; Med; Com; Trv; Int; Fuel; Food; Cri; Civ; Pol; Notas").split(
                 ";"))
         header = table.horizontalHeader()
         header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
@@ -406,8 +391,6 @@ class UI(QMainWindow):
         global statelist
 
 
-
-
         gridlist = []
 
 
@@ -434,14 +417,23 @@ class UI(QMainWindow):
 
 
         mapper = QWebEngineView()
-        coordinate = (38.8199286, -90.4782551)
+ 
+        gridlist = []
+        coordinate = (42.9711575, 8.5288225)
         m = folium.Map(
-            tiles='Stamen Terrain',
             zoom_start=4,
             location=coordinate
-
         )
-
+        
+        # Add local tile layer
+        folium.raster_layers.TileLayer(
+            tiles='http://localhost:8000/{z}/{x}/{y}.png',
+            name='Local Tiles',
+            attr='Local Tiles',
+            max_zoom=19,
+            control=True
+        ).add_to(m)
+        
         try:
             connection = sqlite3.connect('traffic.db3')
             #cur = connection.cursor()
@@ -479,19 +471,10 @@ class UI(QMainWindow):
                 testlong = float(testlong)
 
 
-
-
-
-
-
                 #glat = gridLatint
                 #glon = gridLongint
                 glat = testlat
                 glon = testlong
-
-
-
-
 
 
             #query = "SELECT gridlat, gridlong, callsign, date  FROM checkins_Data where groupname = ? and date like ? or date LIKE ?"
@@ -689,8 +672,8 @@ class UI(QMainWindow):
 
         if len(rname) < 2:
             msg = QMessageBox()
-            msg.setWindowTitle("CommStat Report Name Error")
-            msg.setText("Commstat Report name too short")
+            msg.setWindowTitle("CommStat QXT Report Name Error")
+            msg.setText("Nombre de Reporte demasiado corto")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -700,7 +683,7 @@ class UI(QMainWindow):
             newname = rname+".html"
 
 
-        html = "<html><title>&nbsp; Commstat Status Report Data to HTML</title><body><STYLE TYPE='text/CSS'><!--/* The margin order is: top right bottom left */" \
+        html = "<html><title>&nbsp; Commstat QXT Status Report Data to HTML</title><body><STYLE TYPE='text/CSS'><!--/* The margin order is: top right bottom left */" \
                                                                                                           "BODY { margin: 0 auto;" \
                                                                                                           "font-family: Helvetica, Times, Geneva;" \
                                                                                                           "font-size: 10pt;" \
@@ -709,14 +692,12 @@ class UI(QMainWindow):
                                                                                                           "background-color: white;" \
                                                                                                           "}" \
                "</STYLE>" \
-               "<p style=text-align:center><br>&nbsp;&nbsp; <b>Report name :</b> &nbsp;"+newname+"&nbsp;&nbsp;&nbsp;&nbsp; <b>Report Start Date / Time :</b>&nbsp;"+start+"&nbsp;&nbsp;&nbsp;&nbsp; <b>Report End Date Time :</b>&nbsp;"+end+"<br></p>" \
-                                                                                                                                                                  "<table style ='width :75%' > <style> table, th, td {  border: 2px solid; margin: 0px auto;} </style> <tr><td><b> &nbsp;&nbsp;Date Time UTC </b></td><td><b>&nbsp; ID &nbsp;</b></td><td><b>&nbsp; Callsign</b></td><td><b>&nbsp;Grid&nbsp;</b></td><td><b>&nbsp; Priority &nbsp;</b></td><td><b> &nbsp; Stat &nbsp; </b></td><td><b>&nbsp;Pow </b>&nbsp; </td><td><b>&nbsp; H20 &nbsp;</b></td><td><b>&nbsp; Med&nbsp; </b></td><td><b>&nbsp; Com &nbsp; </b></td><td><b>&nbsp; Trv &nbsp;</b></td><td><b>&nbsp; Int &nbsp;</b> </td><td><b>&nbsp;Fuel &nbsp;</b></td><td><b>&nbsp; Food &nbsp;</b></td><td><b>&nbsp; Cri &nbsp;</b></td><td><b>&nbsp; Civ &nbsp; </b></td><td><b>&nbsp;Pol &nbsp;</b></td><td><b>&nbsp; Remarks &nbsp; </b></td></tr>"
+               "<p style=text-align:center><br>&nbsp;&nbsp; <b>Report name :</b> &nbsp;"+newname+"&nbsp;&nbsp;&nbsp;&nbsp; <b>Inicio Reporte Fecha / Hora :</b>&nbsp;"+start+"&nbsp;&nbsp;&nbsp;&nbsp; <b>Fin Reporte Fecha / Hora :</b>&nbsp;"+end+"<br></p>" \
+                                                                                                                                                                  "<table style ='width :75%' > <style> table, th, td {  border: 2px solid; margin: 0px auto;} </style> <tr><td><b> &nbsp;&nbsp;Fecha Hora UTC </b></td><td><b>&nbsp; ID &nbsp;</b></td><td><b>&nbsp; Indicativo</b></td><td><b>&nbsp;Grid&nbsp;</b></td><td><b>&nbsp; Prioridad &nbsp;</b></td><td><b> &nbsp; Stat &nbsp; </b></td><td><b>&nbsp;Pow </b>&nbsp; </td><td><b>&nbsp; H20 &nbsp;</b></td><td><b>&nbsp; Med&nbsp; </b></td><td><b>&nbsp; Com &nbsp; </b></td><td><b>&nbsp; Trv &nbsp;</b></td><td><b>&nbsp; Int &nbsp;</b> </td><td><b>&nbsp;Fuel &nbsp;</b></td><td><b>&nbsp; Food &nbsp;</b></td><td><b>&nbsp; Cri &nbsp;</b></td><td><b>&nbsp; Civ &nbsp; </b></td><td><b>&nbsp;Pol &nbsp;</b></td><td><b>&nbsp; Remarks &nbsp; </b></td></tr>"
 
-
-
-        color1 = "green"
-        color2 = "yellow"
-        color3 = "red"
+        color1 = "verde"
+        color2 = "amarill"
+        color3 = "rojo"
         for row in result:
             srdatetime = row[0]
             srstatus = row[5]
@@ -830,8 +811,8 @@ class UI(QMainWindow):
 
 
         msg = QMessageBox()
-        msg.setWindowTitle("CommStat Report Created ")
-        msg.setText("CommStat Report : "+rname+"  Created  & placed in reports folder")
+        msg.setWindowTitle("CommStat QXT Reporte Creado ")
+        msg.setText("Reporte de CommStat QXT: "+rname+"  Creado y guardado en la carpeta: reports")
         msg.setIcon(QMessageBox.Information)
         msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
         x = msg.exec_()  # this will show our messagebox
