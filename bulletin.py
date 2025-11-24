@@ -59,7 +59,7 @@ class Ui_FormBull(object):
         self.lineEdit_3.setMaxLength(8)
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.label_3 = QtWidgets.QLabel(FormBull)
-        self.label_3.setGeometry(QtCore.QRect(58, 65, 100, 20))
+        self.label_3.setGeometry(QtCore.QRect(30, 65, 100, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_3.setFont(font)
@@ -87,7 +87,7 @@ class Ui_FormBull(object):
         self.pushButton_3.setObjectName("pushButton_3")
 
         self.label = QtWidgets.QLabel(FormBull)
-        self.label.setGeometry(QtCore.QRect(162, 20, 523, 16))
+        self.label.setGeometry(QtCore.QRect(30, 20, 700, 16))
         self.label.setObjectName("label")
         
         self.find_bull_id()
@@ -122,7 +122,7 @@ class Ui_FormBull(object):
         self.pushButton.setText(_translate("FormBull", "Transmitir"))
         self.pushButton_2.setText(_translate("FormBull", "Cancelar"))
         self.pushButton_3.setText(_translate("FormBull", "Guardar"))
-        self.label.setText(_translate("FormBull", "Se transmitirá un mensaje a todas las estaciones con una ventana emergente para tomar medidas inmediatas"))
+        self.label.setText(_translate("FormBull", "Se transmitirá un mensaje a todas las estaciones con una ventana emergente para tomar medidas inmediatas."))
 
 
     def getConfig(self):
@@ -320,6 +320,8 @@ class Ui_FormBull(object):
                     cursor.close()
                     self.find_bull_id()
 
+
+
             cursor.close()
 
         except sqlite3.Error as error:
@@ -329,6 +331,7 @@ class Ui_FormBull(object):
                 sqliteConnection.close()
          #       print("The SQLite connection is closed")
     
+
     def closeapp(self):
         self.MainWindow.close()
 
