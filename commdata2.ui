@@ -135,7 +135,7 @@
     <item row="1" column="7">
      <widget class="QPushButton" name="pushButtonLoad">
       <property name="text">
-       <string>Cargar Display</string>
+       <string>Cargar Datos</string>
       </property>
      </widget>
     </item>
@@ -190,3 +190,4 @@
  <resources/>
  <connections/>
 </ui>
+
