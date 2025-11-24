@@ -103,13 +103,13 @@ class Ui_FormStatack(object):
 
     def retranslateUi(self, FormStatack):
         _translate = QtCore.QCoreApplication.translate
-        FormStatack.setWindowTitle(_translate("FormStatack", "CommStat StatRep Ack"))
-        self.label_2.setText(_translate("FormStatack", "Selected Callsigns for ACK :"))
-        self.pushButton.setText(_translate("FormStatack", "Transmit"))
+        FormStatack.setWindowTitle(_translate("FormStatack", "CommStat QXT StatRep ACK"))
+        self.label_2.setText(_translate("FormStatack", "Seleccion los Indicativos para ACK :"))
+        self.pushButton.setText(_translate("FormStatack", "Transmitir"))
         #self.label.setText(_translate("FormStatack", ""))
-        self.pushButton_2.setText(_translate("FormStatack", "Cancel"))
-        self.pushButton_4.setText(_translate("FormStatack", "Forward Selected StatRep"))
-        self.pushButton_5.setText(_translate("FormStatack", "Delete Selected StatRep"))
+        self.pushButton_2.setText(_translate("FormStatack", "Cancelar"))
+        self.pushButton_4.setText(_translate("FormStatack", "Reenviar StatRep seleccionado"))
+        self.pushButton_5.setText(_translate("FormStatack", "Borrar StatRep seleccionado"))
 
 
     def getConfig(self):
@@ -132,7 +132,7 @@ class Ui_FormStatack(object):
             serverip = format(systeminfo["server"])
             serverport = format(systeminfo["port"])
             selectedgroup = format(userinfo["selectedgroup"])
-            labeltext = ("Currently Active Group : " + selectedgroup)
+            labeltext = ("Grupo Actualmente Activo : " + selectedgroup)
             self.label.setText(labeltext)
             self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
 
@@ -165,7 +165,7 @@ class Ui_FormStatack(object):
 
         table = self.tableWidget
         table.setHorizontalHeaderLabels(
-            str("Date Time UTC ;ID ;Callsign; Grid ; Priority; Stat; Remarks").split(
+            str("Fecha Hora UTC ;ID ;Indicativo; Grid ; Prioridad; Stat; Notas").split(
                 ";"))
         header = table.horizontalHeader()
         header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
@@ -193,7 +193,7 @@ class Ui_FormStatack(object):
 
             msg = QMessageBox()
             msg.setWindowTitle("CommStatX StatRep Saved")
-            msg.setText("It appears you have made more than one StatRep selection, Commstat cannot forward more than one StatRep ID :" )
+            msg.setText("Parece que has seleccionado más de un StatRep. CommStat no puede reenviar más de un StatRep :" )
             msg.setIcon(QMessageBox.Information)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()
@@ -323,10 +323,6 @@ class Ui_FormStatack(object):
             cur.close()
 
 
-
-
-
-
         selectedgroup1 = "@"+selectedgroup
 
 
@@ -341,8 +337,6 @@ class Ui_FormStatack(object):
         self.closeapp()
 
 
-
-
     def on_Click(self):
         global acklist
         global selectedfwd
@@ -350,7 +344,7 @@ class Ui_FormStatack(object):
         value = index.sibling(index.row(),2).data()
         selectedfwd = index.sibling(index.row(),1).data()
         acklist = acklist+ " * "+value
-        self.lineEdit.setText("StatRep Received from : "+acklist)
+        self.lineEdit.setText("StatRep Recibido de : "+acklist)
 
     def transmit(self):
         global selectedgroup
@@ -358,15 +352,13 @@ class Ui_FormStatack(object):
         global acklist
 
 
-        
-
-        comments1 = "StatRep Received   "+ acklist
-        comments = re.sub("[^A-Za-z0-9*\-\s]+", " ", comments1)
+        comments1 = "StatRep Recibido   "+ acklist
+        comments = re.sub(r"[^A-Za-z0-9*\-\s]+", " ", comments1)
 
         if len(comments) < 5 :
             msg = QMessageBox()
-            msg.setWindowTitle("CommStatX error")
-            msg.setText( "Text too short")
+            msg.setWindowTitle("CommStat QXT Error")
+            msg.setText( "Texto demasiado corto")
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()  # this will show our messagebox
@@ -380,8 +372,8 @@ class Ui_FormStatack(object):
 
         #res = QMessageBox.question(FormCheckin, "Question", "Are you sure?", QMessageBox.Yes | QMessageBox.No)
         msg = QMessageBox()
-        msg.setWindowTitle("CommStatX TX")
-        msg.setText("CommStatX will transmit : " + message)
+        msg.setWindowTitle("CommStat QXT Tx")
+        msg.setText("CommStat QXT transmitirá : " + message)
         msg.setIcon(QMessageBox.Information)
         msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
         x = msg.exec_()
@@ -403,8 +395,8 @@ class Ui_FormStatack(object):
         if acklist_len > 10:
 
             msg = QMessageBox()
-            msg.setWindowTitle("CommStat StatRep Operation ")
-            msg.setText("It appears you have made more than one StatRep selection, Commstat cannot Delete more than one StatRep ID :" )
+            msg.setWindowTitle("CommStat Operacion de StatRep ")
+            msg.setText("Parece que has seleccionado más de un StatRep. CommStat no puede borrar más de un ID de StatRep :" )
             msg.setIcon(QMessageBox.Information)
             msg.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
             x = msg.exec_()
@@ -441,61 +433,6 @@ class Ui_FormStatack(object):
         self.loadData()
 
         conn.close()
-
-        #self.msgWarning = QMessageBox()
-        # Set the Warning icon
-        #self.msgWarning.setIcon(QMessageBox.Warning)
-        # Set the main message
-        #self.msgWarning.setText("You are about to permanently delete record :"+selectedfwd+" are you sure you want to continue ?")
-        # Set two buttons for the message box
-        #self.msgWarning.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        # Call the custom method on button clicked
-        #self.msgWarning.buttonClicked.connect(self.msgButton)
-        # Set the title of the window
-        #self.msgWarning.setWindowTitle("Warning Message")
-        # Display the message box
-        #self.msgWarning.show()
-
-    # Define function for the buttons
-    #def msgButton(self, i):
-    #    global selectedfwd
-    #    global acklist
-    #    global selectedgroup
-    #    if i.text() == 'OK':
-    #        print("OK Button is pressed.")
-     #       conn = sqlite3.connect("traffic.db3")
-     #       cur = conn.cursor()
-
-            # cur.execute(
-            #    "INSERT INTO StatRep_Data(datetime,callsign,groupname, grid, SRid, prec,status, commpwr, pubwtr,med, ota, trav, net, fuel, food, crime, civil, political, comments) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            #    (date, call, group, grid, incidenceno, prec2, status, commpwr, pubwtr, med, ota, trav, net, fuel, food,
-            #     crime, civil, political, comments))
-      #      rowsQuery = "DELETE FROM StatRep_Data Where SRid  = '" + selectedfwd + "'"
-      #      cur.execute(rowsQuery)
-      #      conn.commit()
-        #    cur.close()
-        #
-        #    selectedfwd = ""
-        #    self.loadData()
-
-       # else:
-       #     print("Cancel Button is pressed.")
-       #     selectedfwd = ""
-        #    acklist = ""
-        #    return
-
-        #QMessageBox.question(self, '', "You are about to permanently delete record :"+selectedfwd+" are you sure you want to continue ?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-
-        #x = QMessageBox.exec_()
-        #if msg == 'Yes':
-            #conn.commit()
-        #else :
-        #    self.closeapp()
-
-       # conn.close()
-
-
-
 
     def closeapp(self):
         #self.MainWindow.close()
