@@ -310,7 +310,7 @@ class Ui_FormBeacon(object):
 
         minutes = int(minutes_str)
 
-        if minutes < 1:
+        if minutes < 60:
             msg = QMessageBox()
             msg.setWindowTitle("CommStat QXT error")
             msg.setText("Intervalo demasiado corto. Mínimo 60 min")
